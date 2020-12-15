@@ -49,6 +49,31 @@ class Test(unittest.TestCase):
                  wildcard_create_from_string("1010xxxx"), \
                  None, \
                  None))
+
+
+
+
+      
+      self.rule_ids.append(self.N.add_rule("B2", -1, [4], [5], \
+                 wildcard_create_from_string("1010xxxx"), \
+                 None, \
+                 None))
+      self.rule_ids.append(self.N.add_rule("B4", -1, [8], [9], \
+                 wildcard_create_from_string("1010xxxx"), \
+                 None, \
+                 None))
+      self.rule_ids.append(self.N.add_rule("B3", -1, [7], [6], \
+                 wildcard_create_from_string("1010xxxx"), \
+                 None, \
+                 None))
+      self.rule_ids.append(self.N.add_rule("B1", -1, [3], [1,2], \
+                 wildcard_create_from_string("1010xxxx"), \
+                 None, \
+                 None))
+
+      
+
+
       self.rule_ids.append(self.N.add_rule("B1", -1, [1], [2], \
                  wildcard_create_from_string("10001xxx"), \
                  None, \
@@ -177,16 +202,18 @@ class Test(unittest.TestCase):
       self._checkSourceFlow(source_flows)
       
     def testSourceReachabilityProbe(self):
-      self.N.add_link(1, 100)
-      self.N.add_link(100, 1)
+      print("checking Source reachability probe")
+      self.N.add_link(1, 8)
+      self.N.add_link(8, 1)
       s = headerspace(1)
       s.add_hs(wildcard_create_from_string("1xxxxxxx"))
-      self.N.add_source("client", s, [100])
+      self.N.add_source("client", s, [8])
       self.N.add_link(12, 200)
       self.N.add_link(200,12)
       self.N.add_source_reachability_probe("no-flow-from-client", [1], [200],\
                                       wildcard_create_from_string("xxxxxxxx"))
       probe_state = self.N.get_source_probe_state("no-flow-from-client")
+      
       self.assertEqual(len(probe_state),2)
       #self.N.print_pluming_network(True)
       self.N.remove_source_reachability_probe("no-flow-from-client")

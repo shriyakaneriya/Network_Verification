@@ -18,6 +18,7 @@ def generate_random_wc():
   return result
 
 if __name__ == '__main__':
+
   N = NetPlumber(1)
   rule_ids = []
   N.add_link(2,4)
@@ -28,8 +29,8 @@ if __name__ == '__main__':
   N.add_link(8, 5)
   N.add_link(7, 9)
   N.add_link(9, 7)
-  N.add_link(1, 100)
-  N.add_link(100, 1)
+  N.add_link(1, 2)
+  N.add_link(2, 1)
   s = headerspace(1)
   s.add_hs(wildcard_create_from_string("1xxxxxxx"))
   N.add_source("client", s, [100])
@@ -40,6 +41,60 @@ if __name__ == '__main__':
                  None))
   en = time()
   print "time ",en-st
+     #------------SHRIYA wrote from here-----------
+  st = time()
+  rule_ids.append(N.add_rule("B2", -1, [4], [5], \
+                 wildcard_create_from_string("1010xxxx"), \
+                 None, \
+                 None))
+  en = time()
+  print "time ",en-st
+
+  st = time()
+  rule_ids.append(N.add_rule("B4", -1, [8], [9], \
+                 wildcard_create_from_string("1010xxxx"), \
+                 None, \
+                 None))
+  en = time()
+  print "time ",en-st
+
+  st = time()
+  rule_ids.append(N.add_rule("B3", -1, [7], [6], \
+                 wildcard_create_from_string("1010xxxx"), \
+                 None, \
+                 None))
+  en = time()
+  print "time ",en-st
+
+  st = time()
+  rule_ids.append(N.add_rule("B1", -1, [3], [1], \
+                 wildcard_create_from_string("1010xxxx"), \
+                 None, \
+                 None))
+  en = time()
+  print "time ",en-st
+  #print(wildcard_create_from_string("1010xxxx,1070xxxx"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  #to this place 
   st = time()
   rule_ids.append(N.add_rule("B1", -1, [1], [2], \
                  wildcard_create_from_string("10001xxx"), \
@@ -82,6 +137,7 @@ if __name__ == '__main__':
                  None))
   en = time()
   print "time ",en-st
+  '''
   master_st = time()
   for i in range(1000):
     mtch = generate_random_wc()
@@ -117,5 +173,7 @@ if __name__ == '__main__':
     print mtch, " at B4 takes ",(en-st)
   master_en = time()
   print "master time ",(master_en-master_st)
+  '''
+  N.print_pluming_network(True)
+
   
-  #N.print_pluming_network(True)
