@@ -1,6 +1,6 @@
 # Network_Verification
 
-Header Space Library.  
+## Header Space Library.  
 
 The access instruction for this library are as follows:
 
@@ -34,13 +34,21 @@ The access instruction for this library are as follows:
        
     8) Run ./gen <network> [reads transfer functions from tfs/<network>/* and creates the data file data/<network>.dat => confirm this]
     9) Run ./<network> <source_port> <dest_port> or ./<network> <source_port> [<dest_port1>, <dest_port1>, ..] etc.
+    10) You can loop around reachablity code from port-map to check reachability between different combination of nodes. 
+    11) Optional/Example: We can check reachability through the exmaples folder in hassel-c. Go to /hassel-c/examples/stanford.
+    12) Optional/Example: Run python run_loop_detection_su_bb.py.
+        This will run loop detection on the stanford tf file. 
 
 
+## Netplumber.  
 
+Follow-up access instructions for this library are as follows
 
-loop around reachablity code from port-map to check the possibility. 
-
-
-
-We can run netplumber on MacOS (again because of .so file.) 
-Make sure you change the utils folder. 
+    1) Go to hassel-c directory.
+    2) Go to netplumbing
+        We can run netplumber on MacOS (again because of .so file.) as seen above in the headerspace library. Note that I have changed the utils folder with my own binaries, so if you directly skip to this step, it will work if you are on Mac environment. 
+    3) We can use the test_net_plumber.py file to test new networks.
+        The file allows for adding/deleting nodes and links to a network. Netplumber will check loops and blackholes in the resulting network upon addition of links. We cannot check the network for slicing because there will always be a slice when you begin constructing a network.   
+    4) We can run the file through python test_net_plumber.py
+    5) We can also run topologies through testing.py file. 
+   
